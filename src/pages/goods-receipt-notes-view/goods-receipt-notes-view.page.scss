@@ -1,0 +1,18 @@
+.my-thin-col {
+  flex: 0 0 4px;
+}
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  border: 2px dashed rgba(114, 186, 94, 0.35);
+  height: 400px;
+  background: rgba(114, 186, 94, 0.05);
+}
+
+.stick {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}

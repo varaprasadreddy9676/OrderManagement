@@ -1,0 +1,18 @@
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 12060 not found in process
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 15600 not found in process
+[0722/213615.526:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0722/213616.337:ERROR:exception_snapshot_win.cc(98)] thread ID 6908 not found in process
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 12720 not found in process
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 1916 not found in process
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 12676 not found in process
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 13004 not found in process
+[0722/213616.338:ERROR:exception_snapshot_win.cc(98)] thread ID 18088 not found in process
+[0722/213616.339:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0722/213616.339:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)

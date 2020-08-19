@@ -1,0 +1,183 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" routerLink="/purchase-orders" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text><h5> {{purchaseOrder.customerName}}</h5></ion-text>
+      <ion-text><h6>ORDER: {{purchaseOrder.documentNumber}}</h6></ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-no-padding whiteSmoke-background">
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12" class="icons" style="font-size: 14px;">
+          <ion-icon item-start name="calendar-outline" class="icons" color="primary"></ion-icon>
+          <span class="text2" style="font-size: 14px;"> &nbsp;&nbsp; Ordered on {{purchaseOrder.date}}</span>
+      </ion-col>
+    </ion-row>
+  <ion-row style="padding-top: 20px;">
+  <ion-col ></ion-col>
+  </ion-row>
+        <ion-row style="padding-left: 10px;padding-right:10px">
+          <ion-col size="4"  style="font-size: 14px;">
+            <mat-form-field >
+              <input matInput type="text" #invoiceNumberf name="InvoiceNumber" placeholder="InvoiceNumber" required
+                [(ngModel)]="invoiceNumber" autocomplete="off">
+              <mat-error *ngIf=true>This field is Required</mat-error>
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="2"></ion-col>
+          <ion-col size="4"  style="font-size: 14px;">
+            <mat-form-field >
+              <input matInput class="input2" [matDatepicker]="picker" name="InvoiceDate" placeholder="InvoiceDate" required
+                [(ngModel)]="invoiceDate" autocomplete="off" (click)="picker.open()" readonly="true" (ngModelChange)="validateinvoiceDate()">
+              <mat-datepicker-toggle matSuffix [for]="picker" style="zoom: 1.5"></mat-datepicker-toggle>
+              <mat-datepicker touchUi startView="multi-year" #picker></mat-datepicker>
+            </mat-form-field>
+          </ion-col>
+        </ion-row>
+  </ion-grid>
+  <ion-grid class='no-padding'>
+    <ion-row>
+      <ion-col size="1" ></ion-col>
+      <ion-col size="10" ><ion-text color="primary" style="font-size: 12px;">Item Code and Item Name</ion-text></ion-col>
+      <!-- <ion-col size="6" ><ion-text color="primary" style="font-size: 12px;">Item Name</ion-text></ion-col> -->
+    </ion-row>
+    <ion-card class="card" *ngFor="let item of purchaseOrder.items; let i=index; trackBy: trackByFn">
+      <ion-card-content class="ion-no-padding">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="1">{{i+1}}.</ion-col>
+            <ion-col size="10" >
+              <ion-text color="primary"> {{item.itemCode}} - <span style="text-align: center; color: black"> <b>{{item.itemName}}</b></span></ion-text>
+            </ion-col>
+          </ion-row>
+     
+          <ion-row>
+            <ion-col class="ion-col" size="4.9">Batch No.<span style="color: red;" >*</span></ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col  class="ion-col2" size="4.9">
+                <input matInput type="text" #batchNumber name="batchNumber" placeholder="Batch Number" required
+                  [(ngModel)]="item.batchNumber" autocomplete="off">
+            </ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col2" text-center></ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col class="ion-col" size="4.9">Expiry Date<span style="color: red;" >*</span></ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col class="ion-col2" size="4.9">
+                <ion-datetime displayFormat="MM YYYY" min="2020-01-01" max="3333-12-31" [(ngModel)]="item.expiryDate" placeholder="mm/yyyy"></ion-datetime>
+            </ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col2" text-center>
+              <!-- <mat-datepicker-toggle matSuffix [for]="picker" style="zoom: 1"></mat-datepicker-toggle> -->
+              <ion-icon name="calendar-outline"  class="icons2" color="primary" ></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-col" size="4.9">Pending Quantity</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col class="ion-col2" size="4.9" >{{item.purchaseQuantity}}</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col2uom" text-center>{{item.purchaseUOM}}</ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col class="ion-col" size="4.9">Issue Quantity</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2"size="4.9" >
+                <input matInput type="number" name="Issue Quantity" required
+                  [(ngModel)]="item.fullfillvalue" (ngModelChange)="allRun(item)" autocomplete="off" >
+            </ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col2uom" text-center>{{item.purchaseUOM}}</ion-col>
+          </ion-row>
+            <ion-row>
+              <ion-col class="ion-col" size="4.9">Free Quantity</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2" size="4.9" >
+                <input matInput type="text" name="FreeQuantity" [(ngModel)]="item.freeQuantity" autocomplete="off">
+              </ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col2uom" text-center>{{item.purchaseUOM}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="ion-col" size="4.9">Rate</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2" size="4.9">{{item.rate}}</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col2uom" text-center>Rs.</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="ion-col-net" size="4.9" >Net</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col-net2" size="4.9">{{item.netAmount}}</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col-net" text-center>Rs.</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="7.8"></ion-col>
+              <ion-col size="3.2">
+            <div style="white-space: nowrap;">
+              <ion-col>
+                <a (click)="addNew(item,i)">+ ADD NEW BATCH</a>
+              </ion-col>
+            </div>
+          </ion-col>
+              <!-- <ion-col>
+                <a (click)="remove(item,i)">-RemoveNewBatch</a>
+              </ion-col> -->
+            </ion-row>
+        </ion-grid>
+      </ion-card-content>
+  </ion-card>
+</ion-grid>
+</ion-content>
+<ion-footer>
+<ion-toolbar color="primary">
+    <!-- <ion-row>
+      <ion-col>
+          Total Net Amount
+        <p style="font-size: 14pt;">     
+          Rs.{{purchaseOrder.totalNetAmount |currency:'INR'}}
+      </p>
+      </ion-col>
+      <ion-col class="my-thin-col">
+      </ion-col>
+      <ion-col style="align-items: center;">
+        <ion-item color="primary">
+        <mat-icon  (click)="save()">save</mat-icon>
+        <ion-label>Save</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-button class="button-size" color="primary" #cart (click)="openCart()">CONFIRM</ion-button>
+      </ion-col>
+    </ion-row> -->
+    <ion-grid>
+      <ion-row class="ion-no-padding">
+        <ion-col size="4">
+          <!-- <ion-text class="text" >
+          Total Net Amount
+          </ion-text>
+          <p style="font-size: 14pt;">     
+            Rs.{{purchaseOrder.totalNetAmount |currency:'INR'}}
+          </p> -->
+          <ion-row class="text"> Total Net Amount</ion-row>
+          <ion-row style="font-size: 18px;">Rs.{{purchaseOrder.totalNetAmount |currency:'INR'}}</ion-row>
+        </ion-col>
+        <ion-col size="4" align="center">
+          <ion-icon name="save" class="icons" (click)="save()"></ion-icon>
+          <span class="text2" style="font-size: 18px;">&nbsp; Save</span>
+        </ion-col>
+        <ion-col size="4" align="right">
+          <ion-button color="primary" (click)="openCart()">CONFIRM</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

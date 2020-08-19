@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="home" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text class="titleText">Edit Profile</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <mat-form-field class="input">
+          <input matInput name="name" placeholder="Name" required [(ngModel)]="name"
+            (keyup)="validateName($event)" autocomplete="off">
+          <mat-error *ngIf=true>This field is Required</mat-error>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <mat-form-field class="input">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="email" readonly>
+          <mat-error *ngIf="true">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <mat-form-field class="input">
+          <mat-label>City</mat-label>
+          <input matInput [(ngModel)]="address" readonly>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <mat-form-field class="input">
+          <span matPrefix>+91 &nbsp;</span>
+          <input type="tel" matInput maxlength="10" name="phone" placeholder="Phone Number" required
+            [(ngModel)]="phone" (keyup)="numberValidate($event)" autocomplete="off">
+          <mat-icon matSuffix>call</mat-icon>
+          <mat-error *ngIf=true>This field is Required</mat-error>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar align="center" class="footer" (click)="validateUser()">
+    SAVE
+  </ion-toolbar>
+</ion-footer>

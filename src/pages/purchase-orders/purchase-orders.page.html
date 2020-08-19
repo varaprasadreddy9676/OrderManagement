@@ -1,0 +1,248 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" routerLink="/home" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text class="titleText">PURCHASE ORDERS</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-no-padding whiteSmoke-background">
+  <mat-tab-group mat-align-tabs="center" [selectedIndex]="activeTab" (selectedTabChange)="tabClick($event)">
+    <mat-tab label="PENDING">
+      <ion-grid class="ion-no-padding">
+      <ion-row style="background-color: white;">
+        <ion-col size="1.5">
+          <!-- <mat-icon (click)="resetData()">refresh</mat-icon> -->
+          <ion-icon name="refresh-outline" class="icons" (click)="resetData()"></ion-icon>
+        </ion-col>
+        <ion-col size="5.0"><input class="input3" placeholder="Search" [(ngModel)]="searchTerm" autocomplete="on"></ion-col>
+        <ion-col size="2">
+          <img src="../../assets/icon/customer.png" class="icons">
+          <!-- </ion-col>
+        <ion-col size="1.25"> -->
+          <mat-select class="input2" (selectionChange)="onChangedSort($event)" [(value)]="selected">
+            <mat-option *ngFor="let customer of customerList " [value]="customer">
+              {{customer}}
+            </mat-option>
+          </mat-select>
+        </ion-col>
+        <ion-col size="1.0">
+          <!-- <img src="../../assets/icon/time-outline.png" class="icons2" (click)="sortDate()"> -->
+          <ion-icon name="calendar-outline" class="icons" color="primary" (click)="sortDate()" ></ion-icon>
+        </ion-col>
+        <ion-col size="0.5">
+          <span  style="color: rgb(196, 190, 190);" [innerHtml]="(dateCount%2==0) ? '&#x25B2;' : '&#x25BC;'">
+          </span>
+        </ion-col>
+
+        <ion-col size="1.0">
+          <img src="../../assets/icon/rupee.png" class="icons" (click)="sortPrice()">
+        </ion-col>
+        <ion-col size="0.5">
+        <span  style="color: rgb(196, 190, 190);" ></span><span  style="color: rgb(196, 190, 190);" [innerHtml]="(countPrice%2==0)  ? '&#x25B2;' : '&#x25BC;'"></span>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      </ion-row>
+    </ion-grid>
+      <div class="labelCenter" *ngIf="noPendingOrders">
+        <ion-label class="labelCenter">No Pending Orders</ion-label>
+      </div>
+      <ion-grid class="ion-no-padding">
+        <ion-row class="ion-no-padding">
+          <ion-col class="ion-no-padding" size="12" size-lg="4" size-md="6" size-sm="6"
+            *ngFor="let po of filterItems | customerFilter:searchTerm; let i=index; trackBy: trackByFn">
+            <ion-card class="ion-no-padding">
+              <ion-card-header class="ion-no-padding"> 
+                <ion-grid class="primaryLight">
+                  <ion-row class="ion-no-padding">
+                    <ion-col size="2" >
+                      <ion-img class="icons2" src="../../assets/icon/customer.png"></ion-img>
+                    </ion-col>
+                    <ion-col size="10" >
+                      <span class="text2"  style="font-size: 16px;">
+                       {{po.customerName}}
+                      </span>
+                      </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-header>
+              <ion-card-content class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="1.5">
+                    <ion-img class="icons" src="../../assets/icon/number.png"></ion-img>
+                  </ion-col>
+                  <ion-col size="6.6">
+                    <span class="text2"  style="font-size: 14px;">
+                      {{po.documentNumber}}
+                      </span>
+                  </ion-col>
+                  <ion-col style="color: #A9C145;" size="3.9">
+                    {{po.status}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="1.5">
+                    <ion-icon name="today-outline" class="icons" item-start color="primary"></ion-icon>
+                  </ion-col>
+                    <ion-col size="3">
+                      <span class="text2"  style="font-size: 14px;"> {{po.date}}</span>
+                      </ion-col>
+                    <ion-col size="1.5">
+                      <ion-img class="icons" src="../../assets/icon/rupee.png"></ion-img>
+                    </ion-col>
+                  <ion-col style="color: #A9C145;" size="2">
+                    <span class="text2"  style="font-size: 14px;">  {{po.totalNetAmount}}</span>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button class="button-size" color="#F5F5F6" (click)="viewPO(po._id)"> View</ion-button>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="1.5">
+                    <ion-img class="icons" src="../../assets/icon/location.png"></ion-img>
+                  </ion-col >
+                  <ion-col size="6.5">
+                    <span class="text2"  style="font-size: 14px;"> 
+                      {{po.customerAddress}}
+                      </span>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button class="button-size" color="secondary" (click)="fulfill(po._id)">Fulfill</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <div class="footer">
+        <div style="text-align: center;">
+          Number of POs, {{filterItems.length}} Rs. {{totalNetAmountPending}}
+        </div>
+      </div> -->
+    </mat-tab>
+    <mat-tab label="PROCESSED">
+
+      <ion-grid class="ion-no-padding">
+        <ion-row style="background-color: white;">
+          <ion-col size="1.5">
+            <!-- <mat-icon (click)="resetData()">refresh</mat-icon> -->
+            <ion-icon name="refresh-outline" class="icons" (click)="resetDataProcessed()"></ion-icon>
+          </ion-col>
+          <ion-col size="5.0"><input class="input3" placeholder="Search" [(ngModel)]="searchTermProcessed"></ion-col>
+          <ion-col size="2">
+            <img src="../../assets/icon/customer.png" class="icons">
+            <!-- </ion-col>
+          <ion-col size="1.25"> -->
+            <mat-select class="input2" (selectionChange)="onChangedSortProcessed($event)" [(value)]="selectedProcessed">
+              <mat-option *ngFor="let customer of customerList " [value]="customer">
+                {{customer}}
+              </mat-option>
+            </mat-select>
+          </ion-col>
+          <ion-col size="1.0">
+            <!-- <img src="../../assets/icon/time-outline.png" class="icons2" (click)="sortDate()"> -->
+            <ion-icon name="calendar-outline" class="icons" color="primary" (click)="sortDateProcessed()" ></ion-icon>
+          </ion-col>
+          <ion-col size="0.5">
+            <span  style="color: rgb(196, 190, 190);" [innerHtml]="(dateCount%2==0) ? '&#x25B2;' : '&#x25BC;'">
+            </span>
+          </ion-col>
+  
+          <ion-col size="1.0">
+            <img src="../../assets/icon/rupee.png" class="icons" (click)="sortPriceProcessed()">
+          </ion-col>
+          <ion-col size="0.5">
+          <span  style="color: rgb(196, 190, 190);" ></span><span  style="color: rgb(196, 190, 190);" [innerHtml]="(countPrice%2==0)  ? '&#x25B2;' : '&#x25BC;'"></span>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="labelCenter" *ngIf="noProcessedOrders">
+        <ion-label class="labelCenter">No Processed Orders</ion-label>
+      </div>
+      <ion-grid class="ion-no-padding">
+        <ion-row class="ion-no-padding">
+          <ion-col class="ion-no-padding" size="12" size-lg="4" size-md="6" size-sm="6"
+            *ngFor="let po of  filterItemsProcessed  | customerFilter:searchTermProcessed let i=index;">
+            <ion-card class="ion-no-padding">
+              <ion-card-header class="ion-no-padding"> 
+                <ion-grid class="primaryLight">
+                  <ion-row class="ion-no-padding">
+                    <ion-col size="2" >
+                      <ion-img class="icons2" src="../../assets/icon/customer.png"></ion-img>
+                    </ion-col>
+                    <ion-col size="10" >
+                      <span class="text2"  style="font-size: 16px;">
+                       {{po.customerName}}
+                      </span>
+                      </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-header>
+              <ion-card-content class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="1.5">
+                    <ion-img class="icons" src="../../assets/icon/number.png"></ion-img>
+                  </ion-col>
+                  <ion-col size="6.6">
+                    <span class="text2"  style="font-size: 14px;">
+                      {{po.documentNumber}}
+                      </span>
+                  </ion-col>
+                  <ion-col style="color: #A9C145;" size="3.9">
+                    {{po.status}}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="1.5">
+                    <ion-icon name="today-outline" class="icons" item-start color="primary"></ion-icon>
+                  </ion-col>
+                    <ion-col size="3">
+                      <span class="text2"  style="font-size: 14px;"> {{po.date}}</span>
+                      </ion-col>
+                    <ion-col size="1.5">
+                      <ion-img class="icons" src="../../assets/icon/rupee.png"></ion-img>
+                    </ion-col>
+                  <ion-col style="color: #A9C145;" size="2">
+                    <span class="text2"  style="font-size: 14px;">  {{po.totalNetAmount}}</span>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button class="button-size" color="#F5F5F6" (click)="viewPO(po._id)"> View</ion-button>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="1.5">
+                    <ion-img class="icons" src="../../assets/icon/location.png"></ion-img>
+                  </ion-col >
+                  <ion-col size="6.5">
+                    <span class="text2"  style="font-size: 14px;"> 
+                      {{po.customerAddress}}
+                      </span>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button class="button-size" color="secondary" (click)="fulfill(po._id)">Fulfill</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </mat-tab>
+  </mat-tab-group>
+</ion-content>
+
+<ion-footer color="primary">
+  <ion-toolbar  color="primary">
+    <div style="text-align: center;">
+      <label *ngIf="activeTab"> Number of POs, {{processedpurchaseOrders.length}} Rs. {{totalNetAmountProcessed}}</label>
+   <label *ngIf="!activeTab"> 
+    Number of POs, {{filterItems.length}} Rs. {{totalNetAmountPending}}</label>
+  </div></ion-toolbar>
+</ion-footer>

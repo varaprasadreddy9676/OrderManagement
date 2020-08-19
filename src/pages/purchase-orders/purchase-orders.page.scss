@@ -1,0 +1,188 @@
+.button-size{
+  width: 80%;
+  color: black;
+}
+.bcolor{
+  color: gray;
+}
+
+.input2 {
+  width: 20%;
+  color: black;
+}
+.input3 {
+  width: 70%;
+  color: black;
+}
+.container {
+  display: flex;
+}
+
+.input {
+margin-top: 0.5%;
+.mat-form-field-wrapper {
+  padding-top: 0 !important;
+}
+}
+
+.mat-select-arrow { visibility: hidden; }
+.footer {
+  //  background-color: #A9C145;
+  // width: 100%;
+  // left: 0;
+  // right: 0;
+   position: fixed;
+  // bottom: 0;
+   z-index: 1;
+   padding: 0%;
+  // color: white;
+  // align-content: center;
+  // align-items: center;
+}
+.SearchBar {
+  position: absolute;
+  top: 355px;
+  left: 575px;
+}
+
+.SearchBar input {
+  height: 30px;
+  width: 50px;
+}
+// .no-scroll .scroll-content{overflow-x: hidden;}
+.toolbar{
+color: black;
+position: fixed;                                    
+background-color: #ffffff;
+position: relative;
+transform: translateY(10px);
+}
+
+.past-appointment-label {
+// padding-left: 6px;
+height: 25px; 
+width: 100%;
+color: black;
+position: fixed;                
+bottom:1px;                         
+background-color: #ffffff;
+}
+.addIcon {
+width: 40px;
+height: 50px;
+padding-left: 0;
+}
+.ion-col {
+  border: 1px solid #e4e4e7;
+ // size: 6;
+  background:#F5F5F6;
+  text-align: center;
+}
+.ion-col2 {
+  border: 1px solid #e4e4e7;
+ // size: 6;
+   background:#F5F5F6;
+   text-align: right;
+ }
+
+    .icons2 {
+      display: inline-block;
+      // font-size: 35px;
+      vertical-align: middle;
+      width: 33px;
+      height: 33px;
+     margin-left: 9px;
+
+  } 
+
+.text-align-middle {
+position: relative;
+transform: translateY(10px);
+}
+
+
+.labelCenter {
+text-align: center;
+margin-top:63%;
+font-size: 14pt;
+}
+
+.warning-icon {
+position: relative;
+margin: auto;
+left: 2px;
+zoom:2.3;
+color: var(--ion-color-danger);
+}
+
+ion-fab {
+padding-bottom: 20px;
+}
+
+
+.rows {
+margin-top: 18px;
+}
+ion-item {
+padding: 0;
+}
+
+.whiteSmoke-background {
+--ion-background-color: var(--ion-color-light);
+}
+.my-thin-col {
+  flex: 0 0 4px;
+}
+.my-thin-col2 {
+  flex: 0 0 6px;
+}
+.grid {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+::ng-deep .mat-tab-header{
+  z-index: 999;
+  width:100%;
+  position: fixed  !important;
+  background: var(--ion-color-light);
+}
+
+::ng-deep .mat-tab-header-pagination.mat-tab-header-pagination-disabled {
+  display: none !important;
+}
+::ng-deep .mat-tab-body-content {
+  width: 100%;
+  padding-right: 1%;
+  padding-top: 52px;
+  margin-left: 1px;
+}
+
+::ng-deep .mat-tab-label {
+  width: 100%;
+  background: var(--ion-color-light);
+  color: gray;
+}
+
+/* Styles for the active tab label */
+::ng-deep .mat-tab-label.mat-tab-label-active {
+  width: 100%;
+  background: #ffffff;
+  color: var(--ion-color-primary-dark);
+}
+::ng-deep .mat-ink-bar {
+  background-color: var(--ion-color-primary-dark) !important;
+  }
+  .text2 {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .icons {
+    display: inline-block;
+   // font-size: 35px;
+   vertical-align: middle;
+   width: 30px;
+   height: 30px;
+    margin-left: 9px;
+  } 
+  

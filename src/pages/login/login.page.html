@@ -1,0 +1,47 @@
+<ion-content class="background">
+  <div class="upperDiv">
+    <div class="upperDiv">
+    </div>
+    <div class="lowerDiv">
+      <div class="textDiv">
+        <ion-text class="medicsText">
+          medics grid
+        </ion-text>
+      </div>
+    </div>
+  </div>
+  <div class="lowerDiv">
+    <ion-card class="card">
+      <ion-card-header>
+        <ion-card-title class="header">
+          Sign In
+        </ion-card-title>
+      </ion-card-header>
+      <ion-grid>
+        <ion-row class="ion-no-padding">
+          <ion-col align="center" class="ion-no-padding">
+            <mat-form-field class="input" hideRequiredMarker>
+              <input type="text" matInput maxlength="30" minlength="3" name="UserName" placeholder="Username" required
+                [(ngModel)]="userName" >
+              <mat-error *ngIf="true">Enter valid user name</mat-error>
+        
+            </mat-form-field>
+            <mat-form-field class="input" hideRequiredMarker>
+            <input type="password" matInput maxlength="15" minlength="3" name="Password" placeholder="Password" required
+            [(ngModel)]="password" >
+          <mat-error *ngIf="true">Enter valid password</mat-error>
+        </mat-form-field>
+          </ion-col>
+    
+        </ion-row>
+        <ion-row class="ion-no-padding">
+          <ion-col align="right" class="ion-no-padding">
+            <ion-button (click)="doSignIn()" [disabled]="disableSignIn" size="small" fill="clear" class="actionText primaryText">
+              Sign In
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>

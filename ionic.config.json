@@ -1,0 +1,7 @@
+{
+  "name": "medicsgrid",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" routerLink="/purchase-orders" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text class="titleText">PURCHASE ORDER</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-no-padding whiteSmoke-background">
+    <ion-grid>
+        <ion-row class="primaryLight">
+          <ion-col size="2">
+        <ion-img class="icons2" src="../../assets/icon/customer.png"></ion-img>
+          </ion-col>
+          <ion-col size="10">
+     <span class="text2" style="font-size: 14px;">{{purchaseOrder.customerName}} </span>
+    </ion-col>
+        </ion-row>
+    <ion-row>
+      <ion-col size="1.5">
+        <ion-img class="icons" src="../../assets/icon/number.png"></ion-img>
+      </ion-col>
+      <ion-col size="5.5">
+        <span class="text2" style="font-size: 14px;"> {{purchaseOrder.documentNumber}}</span>
+      </ion-col>
+      <ion-col>
+        <ion-col size="1.5">
+          <!-- <ion-icon name="today-outline" class="icons" item-start color="primary"></ion-icon> -->
+          <ion-icon name="calendar-outline" class="icons" color="primary" ></ion-icon>
+        </ion-col >
+        <ion-col size="4"  style="font-size: 14px;"> {{purchaseOrder.date}}</ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" style="font-size: 14px;">
+       Bill to Customer Code: {{purchaseOrder.customerCode}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="2" ></ion-col>
+      <ion-col size="4" ><ion-text color="primary" style="font-size: 12px;">Item Code</ion-text></ion-col>
+      <ion-col size="6" ><ion-text color="primary" style="font-size: 12px;">Item Name</ion-text></ion-col>
+    </ion-row>
+    <ion-card class="card"
+      *ngFor="let item of items; let i=index;">
+      <ion-card-content class="ion-no-padding">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="1">{{i+1}}.</ion-col>
+            <ion-col size="3" >
+              <ion-text color="primary"> <h4>{{item.itemCode}}</h4></ion-text>
+            </ion-col>
+            <ion-col size="7" >
+              <ion-text style="text-align: center;"> <h4><b>{{item.itemName}}</b></h4></ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+          
+            <ion-col class="ion-col" size="4.9">Order Quantity</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col class="ion-col2" size="4.9">{{item.purchaseQuantity}}</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col" text-center>{{item.purchaseUOM}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-col" size="4.9">Pending Quantity</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col class="ion-col2" size="4.9">{{item.pendingQuantity}}</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col" text-center>{{item.purchaseUOM}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-col" size="4.9">Rate</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col  class="ion-col2"  size="4.9">{{item.rate}}</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col" text-center>Rs.</ion-col>
+          </ion-row>
+          <ion-row>
+           
+            <ion-col class="ion-col"  size="4.9">Net</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col class="ion-col2"  size="4.9">{{item.netAmount}}</ion-col>
+            <ion-col size="0.1"></ion-col>
+            <ion-col size="2" class="ion-col" text-center>Rs.</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9"></ion-col>
+            <ion-col>
+              <a (click)="item.showMore = !item.showMore"><span  style="color: rgb(196, 190, 190);" >Show </span><span  style="color: rgb(196, 190, 190);" [innerHtml]="item.showMore ? 'less  &#x25B2;' : 'more &#x25BC;'">
+                </span></a>
+            </ion-col>
+          </ion-row>
+          <div *ngIf=item.showMore>
+            <ion-row>
+              <ion-col class="ion-col" size="4.9"> FreeQuantity</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2" size="4.9">{{item.freeQuantity}}</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col" text-center>{{item.purchaseUOM}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="ion-col" size="4.9">GrossAmount</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2" size="4.9">{{item.grossAmount}}</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col" text-center>Rs.</ion-col>
+            </ion-row>
+            <ion-row>
+    
+              <ion-col class="ion-col" size="4.9">TaxAmount</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2" size="4.9">{{item.taxAmount}}</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col" text-center>Rs.</ion-col>
+            </ion-row>
+            <ion-row>
+             
+              <ion-col class="ion-col" size="4.9">TaxPercentage</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col class="ion-col2" size="4.9">{{item.taxPercentage}}</ion-col>
+              <ion-col size="0.1"></ion-col>
+              <ion-col size="2" class="ion-col" text-center>%</ion-col>
+            </ion-row>
+          </div>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+
+  <div class="footer">
+    <div style="text-align: center;">
+      <ion-button color="secondary"  (click)="fulfill(purchaseOrder._id)">FULFILL</ion-button>
+    </div>
+  </div>
+  <!-- <ion-col size="12" class="ion-text-center">
+    
+  </ion-col> -->
+</ion-content>

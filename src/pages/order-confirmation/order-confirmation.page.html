@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" routerLink="/fulfill-order/{{purchaseOrder._id}}" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text><h5> {{purchaseOrder.customerName}}</h5></ion-text>
+      <ion-text><h6>ORDER: {{purchaseOrder.documentNumber}}</h6></ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content  class="ion-no-padding whiteSmoke-background">
+  <div class="ion-text-end">
+    <ion-button (click)="close()" fill="clear" color="dark">
+      <ion-icon name="close" slot="start"></ion-icon>
+    </ion-button>
+  </div>
+  <ion-grid class="ion-no-padding">
+    <ion-row style="padding-left: 10px;padding-right:10px">
+      <ion-col size="4"  style="font-size: 13px;">Invoice Number</ion-col>
+        <ion-col size="2"></ion-col>
+        <ion-col size="4"  style="font-size: 13px;">Invoice Date</ion-col>
+    </ion-row>
+    <ion-row style="padding-left: 10px;padding-right:10px">
+      <ion-col size="4"  style="font-size: 15px;">
+        <mat-form-field >
+          <input matInput type="text" name="InvoiceNumber" value={{purchaseOrder.invoiceNumber}} required
+           autocomplete="off" readonly="true">
+          <mat-error *ngIf=true>This field is Required</mat-error>
+          </mat-form-field>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      <ion-col size="4"  style="font-size: 15px;">
+        <mat-form-field >
+          <input matInput class="input2" name="InvoiceDate" placeholder={{purchaseOrder.invoiceDate}} required
+           autocomplete="off"  readonly="true">
+          <mat-datepicker-toggle matSuffix  style="zoom: 1.5"></mat-datepicker-toggle>
+          <mat-datepicker touchUi startView="multi-year" ></mat-datepicker>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-no-padding">
+  <ion-row >
+    <ion-col class="my-thin-col2" size="1"></ion-col>
+    <ion-col class="ion-col" size="5" style="color: white;font-size: 14px;" >Item </ion-col>
+    <ion-col class="ion-col" size="2" style="color: white;font-size: 14px;">Order Quantity</ion-col>
+    <ion-col class="ion-col" size="2" style="color: white;font-size: 14px;">Issued Quantity</ion-col>
+    <ion-col class="ion-col" size="2" style="color: white;font-size: 14px;">Net (Rs.)</ion-col>
+  </ion-row>
+</ion-grid>
+  <ion-grid class="ion-no-padding" *ngFor="let item of purchaseOrder.items; let i=index;">
+    <ion-row> 
+      <ion-col class="my-thin-col" size="1" style="font-size: 14px;">{{(i+1) }}</ion-col>
+      <ion-col class="ion-col-large" size="5" style="font-size: 14px;">{{ item.itemName}}</ion-col>
+      <ion-col class="ion-col-large" size="2" style="font-size: 14px;">{{item.purchaseQuantity}}<sub>Nos</sub></ion-col>
+      <ion-col class="ion-col-large" size="2" style="font-size: 14px;">
+        <span  [ngClass]="{'negative': (item.fullfillvalue < item.purchaseQuantity)}">{{item.fullfillvalue}} +</span>{{item.freeQuantity}}<sub>Nos</sub></ion-col>
+      <ion-col class="ion-col-large" size="2" style="font-size: 14px;">{{item.netAmount|currency:'INR'}}</ion-col>
+    </ion-row>
+</ion-grid>
+<ion-row>
+  <ion-col class="ion-col2" size="8" style="font-size: 15px;">Total Tax Amount</ion-col>
+  <ion-col class="ion-col2" style="font-size: 15px;">{{purchaseOrder.totalTaxAmount|currency:'INR'}}</ion-col>
+</ion-row>
+<ion-row>
+  <ion-col class="ion-col-net1" size="8" style="font-size: 15px;">Total Net Amount</ion-col>
+  <ion-col class="ion-col-net1" style="font-size: 15px;">{{purchaseOrder.totalNetAmount|currency:'INR'}}</ion-col>
+</ion-row>
+
+  <div class="footer" >
+    <ion-row >
+      <ion-col class="ion-colfont" >
+          Total Net Amount
+        <p>     
+          Rs.{{purchaseOrder.totalNetAmount|currency:'INR'}}
+          </p>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col >
+        <ion-button style="color:#D5EB74;" (click)="checkout()">FINALIZE</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

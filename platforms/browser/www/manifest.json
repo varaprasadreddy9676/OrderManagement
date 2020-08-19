@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "medicsgrid",
+  "short_name": "medicsgrid",
+  "version": "com.ubq.medicsgrid",
+  "description": "An awesome app for managing supplier's purchase orders.",
+  "author": "Ubq Technologies Pvt. Ltd.",
+  "icons": [],
+  "start_url": "index.html"
+}

@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" routerLink="/goods-receipt-notes" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text class="titleText">GRN</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card-header>
+          <ion-card-subtitle>
+        {{grn.poNumber}}
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-col>
+      <ion-col>
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-icon name="today-outline" item-start color="primary"></ion-icon>&nbsp;{{grn.invoiceDate}}
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item color="primary">
+          <ion-label>
+           {{grn.customerName}}
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item color="secondary">
+          <ion-label>
+            <ion-icon name="cart-outline"> </ion-icon>&nbsp;{{grn.supplierName}}
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>InvoiceNumber: {{grn.invoiceNumber}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Bill to Customer Code: {{grn.customerCode}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row></ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>Total NetAmount: {{grn.totalNetAmount}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Total GrossAmount: {{grn.totalGrossAmount}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Total TaxAmount: {{grn.totalTaxAmount}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-card class="card card-md" *ngFor="let item of grn.items; let i=index;">
+      <ion-card-content class="card-content card-content-md">
+        <ion-grid>
+          <ion-row>
+            <ion-col class='my-thin-col'>{{i+1}}.</ion-col>
+            <ion-col>Item Code</ion-col>
+            <ion-col>Item Name</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>
+              {{item.itemCode}}
+            </ion-col>
+            <ion-col>
+              {{item.itemName}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>Order Quantity</ion-col>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>{{item.purchaseQuantity}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>Batch No.</ion-col>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>{{item.batchNumber}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>ExpiryDate</ion-col>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>{{item.expiryDate}}</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>Rate</ion-col>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>{{item.rate}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>Net</ion-col>
+            <ion-col class='my-thin-col'></ion-col>
+            <ion-col>{{item.netAmount}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+            <ion-col></ion-col>
+            <ion-col>
+              <a (click)="item.showMore = !item.showMore">Show <span [innerHtml]="item.showMore ? 'less' : 'More'">  </span></a>
+            </ion-col>
+          </ion-row>
+          <div *ngIf=item.showMore>
+            <ion-row>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col> FreeQuantity</ion-col>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>{{item.freeQuantity}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>GrossAmount</ion-col>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>{{item.grossAmount}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>TaxAmount</ion-col>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>{{item.taxAmount}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>TaxPercentage</ion-col>
+              <ion-col class='my-thin-col'></ion-col>
+              <ion-col>{{item.taxPercentage}}</ion-col>
+            </ion-row>
+          </div>
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-grid>
+</ion-content>

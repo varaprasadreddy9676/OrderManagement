@@ -1,0 +1,47 @@
+<ion-app>
+
+
+  <ion-split-pane contentId="main-content" [when]="false">
+
+
+    <ion-menu [ngClass]="isPlatformBrowser ?  'menuPanel fixed-menu' : 'menuPanel floating-menu'"
+      contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list class="listMenu" padding-top>
+          <ion-menu-toggle auto-hide="false" *ngFor="let page of appPages">
+            <ion-item [disabled]="page.disable" routerDirection="root" [routerLink]="[page.url]" lines="none"
+              detail="false">
+              <ion-icon [name]="page.icon" item-left color="tertiary"></ion-icon>
+              <ion-label color="tertiary">{{ page.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+        
+          <ion-menu-toggle auto-hide="false">
+            <ion-item  *ngIf="isRootUser" lines="none" detail="false"
+              (click)="appReboot()">
+              <ion-icon name="reload-outline" item-left color="tertiary"></ion-icon>
+              <ion-label color="tertiary">Reboot App</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-item lines="none" detail="false" (click)="signOut()">
+            <ion-icon name="log-out-outline" item-left color="tertiary"></ion-icon>
+            <ion-label color="tertiary">Sign Out</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+      <div class="version-name" *ngIf="appVersionNo">
+        <ion-text color="tertiary">
+          Version {{ appVersionNo }}
+        </ion-text>
+      </div>
+
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+  <!-- <ion-router-outlet>Version</ion-router-outlet> -->
+
+  <!-- <ion-footer>{{appVersionNo}}</ion-footer> -->
+</ion-app>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "134628980280",
+    "firebase_url": "https://medics-grid.firebaseio.com",
+    "project_id": "medics-grid",
+    "storage_bucket": "medics-grid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134628980280:android:9f4032044ca4e7bf7898cd",
+        "android_client_info": {
+          "package_name": "com.ubq.medicsgrid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134628980280-8pokcd9pg4ghcrbim5ng29dhskd78kva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqBg-YQSwuSBxp1MkZRQ0I5co27QicWl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134628980280-8pokcd9pg4ghcrbim5ng29dhskd78kva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

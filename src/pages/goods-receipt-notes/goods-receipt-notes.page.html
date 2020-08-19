@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-back-button text="" routerLink="/home" icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text class="titleText">GRN</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="3" size-md="4" size-sm="6" size="12" *ngFor="let grn of grn; let i=index;">
+        <ion-card>
+          <!-- <img src="../../assets/icon/po.png" alt="{{po.documentNumber}}"/> -->
+          <ion-item color="primary">
+            <ion-label>
+              {{grn.customerName}}
+            </ion-label>
+          </ion-item>
+          <ion-card-header>
+            <ion-card-subtitle>{{grn.documentNumber}}</ion-card-subtitle>
+            <ion-card-subtitle>{{grn.status}}</ion-card-subtitle>
+            <ion-card-subtitle>{{grn.date}}</ion-card-subtitle>
+            <ion-card-subtitle>{{grn.totalNetAmount}}</ion-card-subtitle>
+            <ion-card-subtitle>{{grn.customerAddress}}</ion-card-subtitle>
+
+            <ion-button (click)="viewGrn(grn._id)">View</ion-button>
+
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>

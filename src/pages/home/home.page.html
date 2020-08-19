@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="primaryDark">
+    <ion-buttons slot="start">
+      <ion-menu-button color="tertiary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">
+      <ion-text class="titleText">medics grid</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="grid">
+    <ion-row class="row">
+      <ion-col>
+
+          <ion-button (click)="getPO()" fill="clear" class="featureHome" >
+            <ion-img class="icons" src="../../assets/icon/purchaseOrder.png"></ion-img>
+          </ion-button>
+          <ion-badge color="secondary">{{pendingpurchaseOrders}}</ion-badge>
+          <p class="bodyText" style="margin: 0px">PurchaseOrders</p>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="getGRN()" fill="clear" class="featureHome" >
+          <ion-img class="icons" src="../../assets/icon/purchaseOrder.png"></ion-img>
+        </ion-button>
+        <p class="bodyText" style="margin: 0px">GoodsReceiptNotes</p>
+
+      </ion-col>
+    </ion-row>
+  
+
+  <!-- <button ion-button (click)="getPO()">PurchaseOrders</button> -->
+</ion-grid>
+</ion-content>
